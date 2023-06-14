@@ -46,7 +46,7 @@ namespace WebApp1.Controllers
         {
             if (!id.HasValue) return BadRequest();
             
-            var result = await _catalogue.Update(id.Value, product);
+            var result = _catalogue.Update(id.Value, product);
 
             if (!result.Success)
                 return result.Error switch
@@ -64,7 +64,7 @@ namespace WebApp1.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            var result = await _catalogue.Add(product);
+            var result = _catalogue.Add(product);
             if (!result.Success)
                 return BadRequest();
             

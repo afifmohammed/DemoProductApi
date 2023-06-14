@@ -49,7 +49,7 @@ public class ProductCatalogue
 
     public Task<Product?> GetProductById(int id) => _productById(id);
 
-    public async Task<(bool Success, IError? Error)> Update(int id, Product product)
+    public (bool Success, IError? Error) Update(int id, Product product)
     {
         var match = id == product.Id;
         if (!match) 
@@ -63,7 +63,7 @@ public class ProductCatalogue
         return (true, null);
     }
 
-    public async Task<(bool Success, IError? Error)> Add(Product product)
+    public (bool Success, IError? Error) Add(Product product)
     {
         if (!product.Id.HasValue) return (false, new ProductMissingId(product));
 
